@@ -10,9 +10,15 @@ function Movies(props) {
   }, [moviesArr, props.movies])
 
   return (
-    <div className='movies container-fluid'>
+    <div className='movies'>
 
-      {/*{moviesArr.length!==1 &&*/}
+      {moviesArr.length === 0 &&
+        <div className="alert alert-primary mt-4 col-7 offset-2" role="alert">
+          Фильмы по вашему запросу не найдены. Попробуйте другой запрос
+        </div>
+      }
+
+      {moviesArr.length!==0 &&
         <div className="container">
           <ul className="cards">
             {moviesArr?.map(function(movie, idx){
@@ -20,7 +26,7 @@ function Movies(props) {
             })}
           </ul>
         </div>
-      {/*}*/}
+      }
 
     </div>
   );

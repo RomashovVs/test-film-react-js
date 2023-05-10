@@ -28,8 +28,6 @@ const searchSlice = createSlice({
   },
 });
 
-// Извлекаем объект с создателями и редуктор
-const { actions, searchReducer } = searchSlice;
 // Извлекаем и экспортируем каждого создателя по названию
 export const {
   initializingState,
@@ -37,6 +35,6 @@ export const {
   changeSearchStr,
   setFilterTypeSlice,
   deleteFilterTypeSlice
-} = actions;
+} = searchSlice.actions;
 // Экпортируем редуктор по умолчанию или по названию
 export default searchSlice.reducer;

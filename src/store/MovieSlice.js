@@ -105,12 +105,10 @@ const movieSlice = createSlice({
       state.selectedMovie = initialState.selectedMovie
     },
     getMovies(state){
-      console.log("Вы в получении списка фильмов");
       state.movies = initialState.movies;
     },
     getMoviesFromSearchStr(state, action) {
-      console.log("Вы в получении списка фильмов c фильтрами по строке");
-      state.movies = initialState.movies.filter((movie)=>(movie.title.includes(action.payload)))
+      state.movies = initialState.movies.filter((movie)=>(movie.title.toLowerCase().includes(action.payload)))
     },
     getMoviesFromSearchType(state, action) {
       console.log(action.payload)

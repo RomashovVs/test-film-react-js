@@ -28,9 +28,7 @@ function Search(props) {
     }
   };
 
-  useEffect(()=>{
-
-    }, [searchSlice, typeSlice])
+  useEffect(()=>{}, [searchSlice, typeSlice])
 
   const handleKey = (event) => {
     if (event.key === 'Enter') {
@@ -48,13 +46,13 @@ function Search(props) {
       <div className="col-md-8">
 
         <div className="col-6">
-        <label htmlFor="exampleInputEmail1">Search films</label>
+        <label htmlFor="exampleInputEmail1">Поиск фильмов</label>
         <div className="form-group input-group">
           <input type='search'
                  className="form-control col-4"
                  id="search"
                  aria-describedby="searchHelp"
-                 placeholder="Search"
+                 placeholder="Введите название фильма"
                  value={searchSlice}
                  onChange={(e) => (dispatch(changeSearchStr(e.target.value)))}
                  onKeyDown={handleKey}
@@ -66,14 +64,14 @@ function Search(props) {
         </div>
 
         <div className='row'>
-          <small id="emailHelp" className="form-text text-muted">You can also use search filters</small>
+          <small id="emailHelp" className="form-text text-muted">Вы также можете использовать фильтры для поиска</small>
 
           <div className="btn-group dropend col-2">
             <button type="submit"
-                    className="btn btn-secondary dropdown-toggle"
+                    className="btn btn-secondary btn-sm dropdown-toggle"
                     data-bs-toggle="dropdown" data-bs-display="static"
                     data-bs-auto-close="outside"
-            >Filter settings</button>
+            >Фильтры</button>
             <div  className="dropdown-menu" aria-labelledby="dropdownMenuClickableInside">
               <form className="px-1 py-1">
                 <div className="dropdown-item form-check-inline">

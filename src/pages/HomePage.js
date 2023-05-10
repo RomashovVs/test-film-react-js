@@ -15,11 +15,8 @@ export function HomePage () {
   const searchMovies = (strSearch, type = [""]) => {
     if (strSearch === '') {
       store.dispatch(getMovies());
-      console.log("Приведение к дуфолтному состоянию");
     } else {
       dispatch(getMoviesFromSearchStr(strSearch))
-      console.log(movies)
-      console.log("Поиск фильмов по вашим параметрам" + strSearch);
     }
 
     if (type.length !== 0) {
@@ -29,13 +26,11 @@ export function HomePage () {
   };
 
   return (
-    <div className="mb-2">
-      <h1 className="text-center">Страница онлайн бронирования билетов</h1>
+    <div className="my-2">
       <Search searchMovies={searchMovies}/>
 
       <div className="row container-fluid">
-        <div className="col-2"></div>
-        <div className="col-9">
+        <div className="col-9 offset-2">
           <Movies movies={movies}/>
         </div>
       </div>
