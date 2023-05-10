@@ -13,7 +13,7 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={ <HomePage/> } />
-          <Route path="/film-list" element={ <FilmListPage/> } />
+          <Route path="/film-lists" element={ <FilmListPage/> } />
         </Routes>
       </Provider>
 

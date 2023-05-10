@@ -51,6 +51,7 @@
     transition: all 0.2s;
     flex-basis: 300px;
     width: 300px;
+    text-align: center;
 }
 
 .card:not(:last-child) {
@@ -67,8 +68,10 @@
 }
 
 .card .card-content {
-    margin: 20px 0;
+    /*margin:  0;*/
     max-width: 85%;
+    /*display: block;*/
+    margin: 1rem auto;
 }
 
 .card .card-link-wrapper {

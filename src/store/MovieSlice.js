@@ -111,12 +111,10 @@ const movieSlice = createSlice({
       state.movies = initialState.movies.filter((movie)=>(movie.title.toLowerCase().includes(action.payload)))
     },
     getMoviesFromSearchType(state, action) {
-      console.log(action.payload)
       state.movies = state.movies.filter((movie)=> action.payload.some(value => movie.type.includes(value)))
     },
     setSelectMovie(state, action) {
       state.selectedMovie = action.payload
-      console.log("Изменили фильм на " + action.payload)
     }
   },
 });
