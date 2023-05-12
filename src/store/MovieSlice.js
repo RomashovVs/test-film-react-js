@@ -10,18 +10,18 @@ const initialState = {
         "в котором рассказана история падшего человека.",
       image: "/advocat.jpg",
       type: ['triller'],
-      sessions: [
+      dateShow: [
         {
           date: "20-05-2023",
-          freePlace: 20
+          sessions: [{timeSession: "10-00", freePlace: 5}, {timeSession: "12-00", freePlace: 10}]
         },
         {
           date: "29-05-2023",
-          freePlace: 10
+          sessions: [{timeSession: "10-15", freePlace: 0}, {timeSession: "12-15", freePlace: 5}]
         },
         {
           date: "26-05-2023",
-          freePlace: 5
+          sessions: [{timeSession: "10-30", freePlace: 0}, {timeSession: "12-30", freePlace: 15}]
         },
       ]
     }, {
@@ -32,18 +32,18 @@ const initialState = {
         "только что освободившегося из тюрьмы.",
       image: "/1+1.jpg",
       type: ['drama'],
-      sessions: [
+      dateShow: [
         {
           date: "21-05-2023",
-          freePlace: 10
+          sessions: [{timeSession: "11-00", freePlace: 0}, {timeSession: "13-00", freePlace: 15}]
         },
         {
           date: "22-05-2023",
-          freePlace: 14
+          sessions: [{timeSession: "11-15", freePlace: 9}, {timeSession: "13-15", freePlace: 21}]
         },
         {
           date: "23-05-2023",
-          freePlace: 5
+          sessions: [{timeSession: "11-30", freePlace: 8}, {timeSession: "13-30", freePlace: 40}]
         },
       ]
     }, {
@@ -54,18 +54,18 @@ const initialState = {
         "присутствующих в особняке членов семьи, хотя, в этом деле больше заинтересован частный детектив Бенуа Блан.",
       image: "/knives.jpg",
       type: ["detective", "drama"],
-      sessions: [
+      dateShow: [
         {
           date: "18-05-2023",
-          freePlace: 9
+          sessions: [{timeSession: "12-00", freePlace: 9}, {timeSession: "14-00", freePlace: 20}]
         },
         {
           date: "19-05-2023",
-          freePlace: 44
+          sessions: [{timeSession: "12-15", freePlace: 11}, {timeSession: "14-15", freePlace: 5}]
         },
         {
           date: "20-05-2023",
-          freePlace: 35
+          sessions: [{timeSession: "12-30", freePlace: 8}, {timeSession: "14-30", freePlace: 0}]
         },
       ]
     } , {
@@ -77,18 +77,18 @@ const initialState = {
         "которые работали над тем делом.",
       image: "/true_detective.jpg",
       type: ['detective'],
-      sessions: [
+      dateShow: [
         {
           date: "17-05-2023",
-          freePlace: 20
+          sessions: [{timeSession: "13-00", freePlace: 5}, {timeSession: "15-00", freePlace: 0}]
         },
         {
           date: "20-05-2023",
-          freePlace: 19
+          sessions: [{timeSession: "13-10", freePlace: 0}, {timeSession: "15-10", freePlace: 0}]
         },
         {
           date: "23-05-2023",
-          freePlace: 16
+          sessions: [{timeSession: "13-20", freePlace: 9}, {timeSession: "15-20", freePlace: 0}]
         },
       ]
     }

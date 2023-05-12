@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {useDispatch} from "react-redux";
-import {getMovies, reset} from "../store/MovieSlice";
+import {reset} from "../store/MovieSlice";
 import {initializingState} from "../store/SearchSlice";
 
 function BookingForm(props) {
@@ -9,7 +9,9 @@ function BookingForm(props) {
   const [name, setName] = useState("")
   const [phone, setPhone] = useState("")
   const [errorsValidate, setErrorsValidate] = useState([])
-  const [dateSession, setDateSession] = useState(props.sessions.at(0).date)
+  const [dateSession, setDateSession] = useState(props.dateShow.at(0).date)
+  const [timeSessions, setTimeSessions] = useState(props.dateShow.at(0).sessions)
+  const [timeSession, setTimeSession] = useState(props.dateShow.at(0).sessions[0].timeSession)
   const dispatch = useDispatch()
 
   const handleKey = (event) => {
@@ -19,7 +21,17 @@ function BookingForm(props) {
   };
 
   useEffect(()=>{
-  }, [props, errorsValidate])
+    console.log("Rerender");
+  }, [props, errorsValidate, timeSession, errorsValidate])
+
+  const handleSelectDate = (event) => {
+    setDateSession(event.target.value)
+    setTimeSessions(props.dateShow.filter((d)=>(d.date===event.target.value))[0].sessions)
+  };
+
+  const handleSelectSessionTime = (event) => {
+    console.log(event.target)
+  }
 
   const onSubmit = (event) => {
     event.preventDefault()
@@ -34,30 +46,36 @@ function BookingForm(props) {
     }
   }
 
-  const onReset = (event) => {
+  const onReset = () => {
     console.log("Reset")
     dispatch(reset())
     dispatch(initializingState())
   }
 
   const validate = () => {
+    console.log(timeSession)
     setErrorsValidate([])
+    let isValidate = true
 
     if (name.length === 0){
       setErrorsValidate((prevState) => ([...prevState, "name"]))
+      isValidate = false
     }
 
     let pattern = new RegExp( "^((8|\\+7)[\\- ]?)?(\\(?\\d{3}\\)?[\\- ]?)?[\\d\\- ]{7,10}$")
-    if (!pattern.test(phone) && phone.length!==11){
+    console.log(phone.length)
+    if (!pattern.test(phone) && phone.length < 11){
       setErrorsValidate((prevState) => ([...prevState, "phone"]))
+      isValidate = false
     }
 
-    let selectCurrentSession = props.sessions.find(s => s.date === dateSession)
+    let selectCurrentSession = timeSessions.find(s => s.timeSession === timeSession)
     if ((numberTicket.valueOf() <= 0) || (numberTicket > selectCurrentSession.freePlace)){
       setErrorsValidate((prevState) => ([...prevState, "numberTicket"]))
+      isValidate = false
     }
 
-    return errorsValidate.length === 0;
+    return isValidate;
   }
 
   return (
@@ -81,7 +99,6 @@ function BookingForm(props) {
           }
         </div>
 
-
         <label>Введите ваш контактный номер телефона:</label>
         <div className="col-4 mb-2">
           <input type='text'
@@ -103,10 +120,22 @@ function BookingForm(props) {
         <div className="col-3 mb-2">
           <select id="selectDate"
                   className="form-select"
-                  onChange={(e)=>(setDateSession(e.target.value))}
+                  onChange={handleSelectDate}
           >
-            {props.sessions.map((session)=>{return (
+            {props.dateShow.map((session)=>{return (
               <option key={session.date} value={session.date}>{session.date}</option>
+            )})}
+          </select>
+        </div>
+
+        <label htmlFor="selectDate">Выберите время сеанса:</label>
+        <div className="col-3 mb-2">
+          <select id="sessionTime"
+                  className="form-select"
+                  onChange={(e)=>(setTimeSession(e.target.value))}
+          >
+            {timeSessions.map((session, idx)=>{return (
+              <option key={idx} value={session.timeSession}>{session.timeSession}</option>
             )})}
           </select>
         </div>
@@ -118,19 +147,20 @@ function BookingForm(props) {
                  id="number_ticket"
                  aria-describedby="number_ticketHelp"
                  value={numberTicket}
+                 disabled={timeSession.freePlace===0}
                  onChange={(e)=>(setNumberTicket(e.target.value))}
                  onKeyDown={handleKey}
           />
           {errorsValidate.includes("numberTicket") &&
-            <small className="text-danger col-4">
-              Ошибка!
+            <small className="text-danger position-absolute">
+              Ошибка количества билетов!
             </small>
           }
         </div>
 
 
-        <button className="btn btn-primary mb-2 mt-2" type="submit" onClick={onSubmit}>Submit</button>
-        <button className="btn btn-outline-primary mb-2 mx-2 mt-2" type="reset" onClick={onReset}>Cancel</button>
+        <button className="btn btn-primary mb-2 mt-4" type="submit" onClick={onSubmit} disabled={timeSession.freePlace===0}>Submit</button>
+        <button className="btn btn-outline-primary mb-2 mx-2 mt-4" type="reset" onClick={onReset}>Cancel</button>
       </form>
     </div>
   )

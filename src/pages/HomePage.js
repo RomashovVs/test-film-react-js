@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { Search } from "../components/Search";
 import {Movies} from "../components/Movies/Movies";
 import {Movie} from "../components/Movies/Movie/Movie";
-import {Provider, useDispatch, useSelector} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import {getMovies, getMoviesFromSearchStr, getMoviesFromSearchType} from "../store/MovieSlice";
 import store from "../store/Store";
 
